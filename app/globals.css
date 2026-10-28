@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   هوية برونت كمبيوتر — نظام ألوان دلالي يدعم الوضعين الليلي والنهاري
+   - التوكنات الدلالية (canvas/surface/line/ink) هي المستخدمة في الواجهات.
+   - تُعرَض قيم الوضع الليلي افتراضيًا، وتُستبدل تلقائيًا عند data-theme="light".
+   - نصوص فاتحة على خلفيات داكنة دائمًا في الوضعين لضمان تباين ≥ 4.5:1.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* أسطح ونصوص (الوضع الليلي — الافتراضي) */
+  --color-canvas: #0d1b2a;
+  --color-surface: #121a26;
+  --color-surface-2: #0b1420;
+  --color-surface-3: #08121e;
+  --color-line: #263449;
+  --color-ink: #eef2f8;
+  --color-ink-soft: #cbd5e1;
+  --color-ink-muted: #a8b6cc;
+
+  /* ألوان الهوية */
+  --color-brand: #00a8ff;
+  --color-brand-strong: #38b6ff;
+  --color-gold: #d4af37;
+
+  /* مرادفات قديمة (للتوافق مع أي استخدام سابق) */
+  --color-pronet-navy: #0d1b2a;
+  --color-pronet-slate: #1b263b;
+  --color-pronet-panel: #121a26;
+  --color-pronet-border: #263449;
+  --color-pronet-cyan: #00a8ff;
+  --color-pronet-lightcyan: #38b6ff;
+  --color-pronet-gold: #d4af37;
+  --color-pronet-muted: #a8b6cc;
+
+  --font-sans:
+    "Cairo", ui-sans-serif, system-ui, "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif;
+
+  --radius-card: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+   الوضع النهاري — تُستبدل نفس التوكنات فتنقلب الواجهة تلقائيًا
+   --------------------------------------------------------------------------- */
+[data-theme="light"] {
+  --color-canvas: #eef3f9;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f7fb;
+  --color-surface-3: #e7eef7;
+  --color-line: #cfdbeb;
+  --color-ink: #0f172a;
+  --color-ink-soft: #35506e;
+  --color-ink-muted: #55637a;
+
+  --color-brand: #0284c7;
+  --color-brand-strong: #0369a1;
+  --color-gold: #8a6d0b;
+
+  --color-pronet-navy: #eef3f9;
+  --color-pronet-slate: #dbe4ef;
+  --color-pronet-panel: #ffffff;
+  --color-pronet-border: #cfdbeb;
+  --color-pronet-cyan: #0284c7;
+  --color-pronet-lightcyan: #0369a1;
+  --color-pronet-gold: #8a6d0b;
+  --color-pronet-muted: #55637a;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* حلقة تركيز واضحة لكل عنصر تفاعلي (متطلب وصولية) */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* احترام تفضيل تقليل الحركة */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .brand-gradient {
+    background-image: linear-gradient(135deg, var(--color-pronet-cyan) 0%, var(--color-pronet-lightcyan) 100%);
+  }
+
+  .gold-gradient {
+    background-image: linear-gradient(135deg, #b98c14 0%, #d4af37 100%);
+  }
+
+  .panel {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  /* زر أساسي: أبيض نقي على أزرق غامق لضمان التباين في الوضعين */
+  .btn-primary {
+    background-image: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 0.85rem;
+    padding: 0.7rem 1.25rem;
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover {
+    filter: brightness(1.12);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    background-color: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+    font-weight: 600;
+    border-radius: 0.85rem;
+    padding: 0.6rem 1.1rem;
+    transition: background-color 0.15s ease;
+  }
+  .btn-ghost:hover {
+    background-color: var(--color-surface-3);
+  }
+
+  .input-base {
+    width: 100%;
+    background-color: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    padding: 0.65rem 1rem;
+    color: var(--color-ink);
+  }
+  .input-base::placeholder {
+    color: var(--color-ink-muted);
+  }
+
+  /* محتوى منسّق (Markdown) */
+  .rich-text {
+    line-height: 1.9;
+  }
+  .rich-text > * + * {
+    margin-top: 0.85rem;
+  }
+  .rich-text ul {
+    list-style: disc;
+    padding-inline-start: 1.4rem;
+  }
+  .rich-text ol {
+    list-style: decimal;
+    padding-inline-start: 1.4rem;
+  }
+  .rich-text a {
+    color: var(--color-brand-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .rich-text code {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: 0.1rem 0.35rem;
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+
+  /* عناصر بلون الهوية: نص داكن على الأزرق الفاتح في الليلي،
+     وخلفية أزرق أغمق مع نص أبيض في النهاري لضمان تباين ≥ 4.5:1 */
+  .chip-brand,
+  .badge-brand {
+    background-color: var(--color-brand);
+    color: #062633;
+  }
+  [data-theme="light"] .chip-brand,
+  [data-theme="light"] .badge-brand {
+    background-color: #0a6ea8;
+    color: #ffffff;
+  }
+}
+
+/* إخفاء العناصر للأجهزة القارئة فقط */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-brand);
+  color: var(--color-ink);
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}

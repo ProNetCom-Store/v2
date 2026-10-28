@@ -1,0 +1,101 @@
+[
+  {
+    "id": "u_designer",
+    "username": "designer",
+    "displayName": "المصمم والمهندس المطور",
+    "phone": "+967778163178",
+    "initialPassword": "AFefk3iEc#UPVZGh",
+    "roleKey": "designer",
+    "roleTitle": "المصمم — كامل الصلاحية",
+    "icon": "🎨",
+    "badgeClass": "bg-cyan-500 text-white",
+    "description": "كامل الصلاحية (100%): إدارة التصميم والهوية البصرية، السلايدر، شريط الماركات، الأقسام والأصناف والتسعير، المنشورات، المستخدمين، والمزامنة البرمجية مع GitHub.",
+    "allowedTabs": [
+      "products",
+      "orders",
+      "categories",
+      "posts",
+      "support",
+      "settings",
+      "users",
+      "github",
+      "profile"
+    ],
+    "canEditPrices": true,
+    "canDeleteItems": true,
+    "canExportSite": true,
+    "active": true
+  },
+  {
+    "id": "u_management",
+    "username": "management",
+    "displayName": "م. عمار محمد سعيد الأسدي",
+    "phone": "+967775043020",
+    "initialPassword": "6C&T^!5iYJkofdvt",
+    "roleKey": "management",
+    "roleTitle": "الإدارة العامة — كامل الصلاحية",
+    "icon": "👨‍💼",
+    "badgeClass": "bg-amber-500 text-slate-950",
+    "description": "كامل الصلاحية (100%): المدير التنفيذي - تحكم شامل في الأصناف، التسعير، العملات وسعر الصرف، الأقسام والماركات، المنشورات، المستخدمين والصلاحيات، والتصدير.",
+    "allowedTabs": [
+      "products",
+      "orders",
+      "categories",
+      "posts",
+      "support",
+      "settings",
+      "users",
+      "github",
+      "profile"
+    ],
+    "canEditPrices": true,
+    "canDeleteItems": true,
+    "canExportSite": true,
+    "active": true
+  },
+  {
+    "id": "u_sales",
+    "username": "sales",
+    "displayName": "موظف قسم المبيعات",
+    "phone": "+967778163178",
+    "initialPassword": "i45s%nUEo@RFu8pw",
+    "roleKey": "sales",
+    "roleTitle": "المبيعات — الأصناف والتسعير والعروض",
+    "icon": "💼",
+    "badgeClass": "bg-emerald-500 text-white",
+    "description": "صلاحيات المبيعات: إدارة الأصناف والتسعير والخصومات، تحديث حالة التوفر، وإضافة المنشورات والعروض الترويجية للعملاء.",
+    "allowedTabs": [
+      "products",
+      "orders",
+      "categories",
+      "posts",
+      "profile"
+    ],
+    "canEditPrices": true,
+    "canDeleteItems": false,
+    "canExportSite": false,
+    "active": true
+  },
+  {
+    "id": "u_support",
+    "username": "support",
+    "displayName": "مهندس الدعم الفني والصيانة",
+    "phone": "+967782060054",
+    "initialPassword": "65qRiiw8nYhob%EY",
+    "roleKey": "support",
+    "roleTitle": "الدعم الفني — المواصفات والمشاريع والصيانة",
+    "icon": "🛠️",
+    "badgeClass": "bg-purple-500 text-white",
+    "description": "صلاحيات الدعم الفني: تحديث المواصفات الفنية للأجهزة، متابعة تذاكر الصيانة والتركيبات الهندسية، ونشر الإرشادات التقنية (بدون صلاحية تعديل الأسعار).",
+    "allowedTabs": [
+      "products",
+      "support",
+      "posts",
+      "profile"
+    ],
+    "canEditPrices": false,
+    "canDeleteItems": false,
+    "canExportSite": false,
+    "active": true
+  }
+]

@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+/data/*.db-wal
+/data/*.db-shm
+/data/backups/*.db
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
